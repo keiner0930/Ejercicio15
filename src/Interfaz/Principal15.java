@@ -78,6 +78,11 @@ public class Principal15 extends javax.swing.JFrame {
         jPanel1.add(txtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, 80, 30));
 
         cmdCalcular.setText("Calcular");
+        cmdCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdCalcularActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmdCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, -1, -1));
 
         cmdBorrar.setText("Borrar");
@@ -103,8 +108,33 @@ public class Principal15 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
-        // TODO add your handling code here:
+    txtPrestamo.setText("");
+    txtEspeciales.setText("");
+    txtOrdinarias.setText("");
+    txtTotal.setText("");    
+    txtPrestamo.requestFocusInWindow();
     }//GEN-LAST:event_cmdBorrarActionPerformed
+
+    private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
+    String res1,res2,res3;
+    int valor,interes,vtotal,cespecial,cordinarias;
+    
+    valor= Integer.parseInt(txtPrestamo.getText());
+    
+    interes=(valor*24)/100;
+    vtotal=valor+interes;
+    cespecial=(vtotal/2)/4;
+    cordinarias=(vtotal/2)/20;
+    
+    res1= String.valueOf(cespecial);
+    res2= String.valueOf(cordinarias);
+    res3= String.valueOf(vtotal);
+    
+    txtEspeciales.setText(res1);
+    txtOrdinarias.setText(res2);
+    txtTotal.setText(res3);
+    
+    }//GEN-LAST:event_cmdCalcularActionPerformed
 
     /**
      * @param args the command line arguments
