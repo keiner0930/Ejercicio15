@@ -5,6 +5,8 @@
  */
 package Interfaz;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author sony
@@ -53,6 +55,12 @@ public class Principal15 extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 2, 18)); // NOI18N
         jLabel2.setText("Valor del Prestamo");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 150, -1));
+
+        txtPrestamo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrestamoKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtPrestamo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 90, 30));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 330, 10));
 
@@ -119,6 +127,14 @@ public class Principal15 extends javax.swing.JFrame {
     String res1,res2,res3;
     int valor,interes,vtotal,cespecial,cordinarias;
     
+    if(txtPrestamo.getText().isEmpty()){
+     getToolkit().beep();
+     JOptionPane.showMessageDialog(this, "Digite El Valor del Prestamo","Error",JOptionPane.ERROR_MESSAGE);
+     txtPrestamo.requestFocusInWindow();
+     }
+    
+    else{
+       
     valor= Integer.parseInt(txtPrestamo.getText());
     
     interes=(valor*24)/100;
@@ -134,7 +150,16 @@ public class Principal15 extends javax.swing.JFrame {
     txtOrdinarias.setText(res2);
     txtTotal.setText(res3);
     
+    }
     }//GEN-LAST:event_cmdCalcularActionPerformed
+
+    private void txtPrestamoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrestamoKeyTyped
+       char c=evt.getKeyChar(); 
+     if(!Character.isDigit(c)) { 
+              getToolkit().beep();  
+              evt.consume();
+          } 
+    }//GEN-LAST:event_txtPrestamoKeyTyped
 
     /**
      * @param args the command line arguments
